@@ -1,15 +1,20 @@
 package Model;
 
-import java.awt.*;
+import javafx.scene.Cursor;
+import javafx.scene.paint.Color;
+
 
 public interface Tool {
 
-    public void onMousePressed(Point p);
-    public void onMouseDragged(Point p);
-    public void onMouseRelesead(Point p);
+    void onMousePressed(double x, double y);
+    void onMouseDragged(double x, double y);
+    void onMouseRelesead(double x, double y);
 
 
-    public Cursor GetCursor();
-    public Cursor GetName();
+    Cursor getCursor();
+    String getName();
+
+    void setColor(Color color);
+    Color getColor();
 
 }
