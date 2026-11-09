@@ -11,6 +11,7 @@ public class CircleTool implements Tool {
     private int startY;
     private Circle current;
     private Color color = Color.BLACK;
+    private int br_size = 10;
 
     public CircleTool(DrCanvas canvas, PixelFactory factory) {
         this.canvas = canvas;
@@ -19,33 +20,16 @@ public class CircleTool implements Tool {
 
     @Override
     public void onMousePressed(double x, double y) {
-        startX = (int) x;
-        startY = (int) y;
-        current = (Circle) factory.createPixel(PixelType.CIRCLE, startX, startY, 0, color);
-        canvas.addPixel(current);
+        drowCircleTool(x,y);
     }
 
     @Override
     public void onMouseDragged(double x, double y) {
-        if (current == null) return;
-        int radius = (int) Math.hypot(x - startX, y - startY);
-        current.setSize(radius * 2);
-        current.setPosition(startX, startY);
-        canvas.repaint();
+        drowCircleTool(x,y);
     }
 
     @Override
-    public void onMouseRelesead(double x, double y) {
-        if (current == null) return;
-        int radius = (int) Math.hypot(x - startX, y - startY);
-        current.setSize(radius * 2);
-
-        if (current.getSize() < 2) {
-            current.setSize(2);
-        }
-        canvas.repaint();
-        current = null;
-    }
+    public void onMouseRelesead(double x, double y) { }
 
     @Override
     public Cursor getCursor() {
@@ -63,5 +47,9 @@ public class CircleTool implements Tool {
 
     @Override public Color getColor() {
         return color;
+    }
+
+    public void drowCircleTool(double x, double y){
+        canvas.addPixel((Circle) factory.createPixel(PixelType.CIRCLE, (int) x, (int) y, br_size, color));
     }
 }

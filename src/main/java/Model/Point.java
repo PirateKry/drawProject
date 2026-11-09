@@ -13,7 +13,11 @@ public class Point extends Pixel {
 
     @Override
     public void draw(GraphicsContext g) {
-        g.setFill(color);
-        g.fillOval(x, y, size, size);
+        double half = size / 2.0;
+        double[] xs = { x, x - half, x + half };
+        double[] ys = { y - half, y + half, y + half };
+
+        applyStrokeStyle(g);
+        g.strokePolygon(xs, ys, 3);
     }
 }

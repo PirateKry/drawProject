@@ -10,6 +10,7 @@ abstract class Pixel {
     protected int y;
     protected int size;
     protected Color color = Color.BLACK;
+    protected double lineWidth = 3.0;//толщина линии
 
     public Pixel(int x, int y, int size) {
         this.x = x;
@@ -47,4 +48,9 @@ abstract class Pixel {
     }
 
     public abstract void draw(GraphicsContext g);
+
+    protected void applyStrokeStyle(GraphicsContext g) {
+        g.setStroke(color);
+        g.setLineWidth(lineWidth);
+    }
 }

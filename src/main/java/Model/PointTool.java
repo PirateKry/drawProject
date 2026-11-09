@@ -9,6 +9,7 @@ public class PointTool implements Tool{
     private Color color = Color.BLACK;
     private final int pintSize;
 
+
     public PointTool(DrCanvas canvas, PixelFactory factory, int pintSize){
         this.canvas = canvas;
         this.factory = factory;
@@ -17,12 +18,12 @@ public class PointTool implements Tool{
 
     @Override
     public void onMousePressed(double x, double y){
-        canvas.addPixel(factory.createPixel(PixelType.POINT, (int) x, (int) y, pintSize, color));
+        drowPointTool(x,y);
     }
 
     @Override
     public void onMouseDragged(double x, double y){
-        canvas.addPixel(factory.createPixel(PixelType.POINT, (int) x, (int) y, pintSize, color));
+        drowPointTool(x,y);
     }
 
     @Override
@@ -46,5 +47,9 @@ public class PointTool implements Tool{
 
     @Override public Color getColor() {
         return color;
+    }
+
+    public void drowPointTool(double x, double y){
+        canvas.addPixel(factory.createPixel(PixelType.POINT, (int) x, (int) y, pintSize, color));
     }
 }

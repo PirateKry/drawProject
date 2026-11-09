@@ -28,7 +28,7 @@ public class HelloController {
         factory = new PixelFactory();
 
         //инструменты(точка, сруг, квадрат)
-        pointTool  = new PointTool(drawingCanvas, factory,3);
+        pointTool  = new PointTool(drawingCanvas, factory,10);
         circleTool = new CircleTool(drawingCanvas, factory);
         squareTool = new SquareTool(drawingCanvas, factory);
 

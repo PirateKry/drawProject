@@ -17,8 +17,7 @@ public class Circle extends Pixel {
 
     @Override
     public void draw(GraphicsContext g) {
-        g.setStroke(color);
-        g.setLineWidth(3);
+        applyStrokeStyle(g);
         g.strokeOval(x - size/2.0, y - size/2.0, size, size);
     }
 

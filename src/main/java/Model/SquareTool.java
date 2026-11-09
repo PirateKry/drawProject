@@ -11,6 +11,7 @@ public class SquareTool implements Tool {
     private int startY;
     private Square current;
     private Color color = Color.BLACK;
+    private int br_size = 10;
 
     public SquareTool(DrCanvas canvas, PixelFactory factory) {
         this.canvas = canvas;
@@ -19,32 +20,16 @@ public class SquareTool implements Tool {
 
     @Override
     public void onMousePressed(double x, double y) {
-        startX = (int) x;
-        startY = (int) y;
-        current = (Square) factory.createPixel(PixelType.SQUARE, startX, startY, 0, color);
-        canvas.addPixel(current);
+        drowSquareTool(x,y);
     }
 
     @Override
     public void onMouseDragged(double x, double y) {
-        if (current == null) return;
-        int dx = Math.abs((int) x - startX);
-        int dy = Math.abs((int) y - startY);
-        int side = Math.max(dx, dy);            // квадрат — по большей стороне
-        current.setSize(side);
-        current.setPosition(startX, startY);
-        canvas.repaint();
+        drowSquareTool(x,y);
     }
 
     @Override
     public void onMouseRelesead(double x, double y) {
-        if (current == null) return;
-        int dx = Math.abs((int) x - startX);
-        int dy = Math.abs((int) y - startY);
-        int side = Math.max(dx, dy);
-        current.setSize(side < 2 ? 2 : side);
-        canvas.repaint();
-        current = null;
     }
 
     @Override
@@ -63,5 +48,9 @@ public class SquareTool implements Tool {
 
     @Override public Color getColor() {
         return color;
+    }
+
+    public void drowSquareTool(double x, double y){
+        canvas.addPixel(factory.createPixel(PixelType.SQUARE, (int) x, (int) y, br_size, color));
     }
 }
