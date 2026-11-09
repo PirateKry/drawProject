@@ -2,26 +2,48 @@
 
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import Model.DrCanvas?>
 <?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Spinner?>
+<?import Model.DrCanvas?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.drawproject.HelloController">
 
     <top>
-        <HBox spacing="10" style="-fx-padding: 10;">
-            <Button fx:id="pointButton"  text="Brush"/>
-            <Button fx:id="circleButton" text="Circle"/>
-            <Button fx:id="squareButton" text="Square"/>
-            <Button fx:id="clearButton"  text="Clear"/>
-            <ColorPicker fx:id="colorPicker"/>
-            <Label  fx:id="toolLabel"    text="Инструмент: —"/>
-        </HBox>
+        <VBox spacing="5" style="-fx-padding: 10;">
+            <!-- Панель инструментов -->
+            <HBox spacing="10">
+                <Button fx:id="pointButton"  text="Brush"/>
+                <Button fx:id="circleButton" text="Circle"/>
+                <Button fx:id="squareButton" text="Square"/>
+                <Button fx:id="polygonButton" text="Polygon"/>
+                <Button fx:id="clearButton"  text="Clear"/>
+                <ColorPicker fx:id="colorPicker"/>
+                <Label  fx:id="toolLabel"    text="Инструмент: —"/>
+            </HBox>
+
+            <!-- Панель декораторов -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <CheckBox fx:id="fillCheck" text="Заливка"/>
+                <ColorPicker fx:id="fillColorPicker"/>
+
+                <CheckBox fx:id="borderCheck" text="Контур"/>
+                <ColorPicker fx:id="borderColorPicker"/>
+                <Spinner fx:id="borderWidthSpinner" prefWidth="70" editable="true"/>
+
+                <CheckBox fx:id="shadowCheck" text="Тень"/>
+                <ColorPicker fx:id="shadowColorPicker"/>
+                <Spinner fx:id="shadowDxSpinner" prefWidth="60" editable="true"/>
+                <Spinner fx:id="shadowDySpinner" prefWidth="60" editable="true"/>
+            </HBox>
+        </VBox>
     </top>
 
     <center>
-        <DrCanvas fx:id="drawingCanvas" width="800" height="540"/>
+        <DrCanvas fx:id="drawingCanvas" width="800" height="500"/>
     </center>
 </BorderPane>

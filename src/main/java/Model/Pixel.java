@@ -5,7 +5,9 @@ import javafx.scene.paint.Color;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 
-abstract class Pixel {
+import java.util.List;
+
+abstract class Pixel implements Shape{
     protected int x;
     protected int y;
     protected int size;
@@ -52,5 +54,10 @@ abstract class Pixel {
     protected void applyStrokeStyle(GraphicsContext g) {
         g.setStroke(color);
         g.setLineWidth(lineWidth);
+    }
+
+    @Override
+    public List<double[]> getVertices() {
+        return List.of();
     }
 }
