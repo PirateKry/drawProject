@@ -8,7 +8,7 @@ public interface Tool {
 
     void onMousePressed(double x, double y);
     void onMouseDragged(double x, double y);
-    void onMouseRelesead(double x, double y);
+    void onMouseReleased(double x, double y);
 
 
     Cursor getCursor();

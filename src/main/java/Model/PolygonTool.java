@@ -29,7 +29,7 @@ public class PolygonTool implements Tool {
     }
 
     @Override public void onMouseDragged(double x, double y) { }
-    @Override public void onMouseRelesead(double x, double y) { }
+    @Override public void onMouseReleased(double x, double y) { }
 
     public void finish() {
         if (currentVertices.size() >= 3) {

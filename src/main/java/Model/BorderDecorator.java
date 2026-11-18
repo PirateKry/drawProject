@@ -2,22 +2,21 @@ package Model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
 import java.util.List;
 
-public class BorderDecorator extends ShapeDecorator{
+public class BorderDecorator extends ShapeDecorator {
+
     private final Color strokeColor;
     private final double width;
 
-    public BorderDecorator(Shape inner, Color strokeColor, double width){
+    public BorderDecorator(Shape inner, Color strokeColor, double width) {
         super(inner);
         this.strokeColor = strokeColor;
         this.width = width;
     }
 
     @Override
-    public void draw(GraphicsContext g)
-    {
+    public void draw(GraphicsContext g) {
         inner.draw(g);
 
         List<double[]> verts = inner.getVertices();

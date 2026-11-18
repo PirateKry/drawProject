@@ -46,7 +46,7 @@ public class Triangle extends Pixel_R{
         double cy = Math.sqrt(b * b - cx * cx);
 
         double cX = ax + cx;
-        double cY = ay - cy; // "-" чтобы треугольник смотрел вверх
+        double cY = ay - cy;
 
         double[] xs = { ax, bx, cX };
         double[] ys = { ay, by, cY };

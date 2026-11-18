@@ -15,7 +15,7 @@ public class DrCanvas extends javafx.scene.canvas.Canvas {
 
         setOnMousePressed(e -> { if (curTool != null) curTool.onMousePressed(e.getX(), e.getY()); repaint(); });
         setOnMouseDragged(e -> { if (curTool != null) curTool.onMouseDragged(e.getX(), e.getY()); repaint(); });
-        setOnMouseReleased(e -> { if (curTool != null) curTool.onMouseRelesead(e.getX(), e.getY()); repaint(); });
+        setOnMouseReleased(e -> { if (curTool != null) curTool.onMouseReleased(e.getX(), e.getY()); repaint(); });
         setOnMouseClicked(e -> {
             if (e.getClickCount() == 2 && curTool instanceof PolygonTool pt) {
                 pt.finish();

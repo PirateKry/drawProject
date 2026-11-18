@@ -27,7 +27,7 @@ public class PointTool implements Tool{
     }
 
     @Override
-    public void onMouseRelesead(double x, double y){
+    public void onMouseReleased(double x, double y){
 
     }
 

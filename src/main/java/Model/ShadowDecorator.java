@@ -2,10 +2,10 @@ package Model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-
 import java.util.List;
 
 public class ShadowDecorator extends ShapeDecorator {
+
     private final Color shadowColor;
     private final double dx;
     private final double dy;
@@ -18,8 +18,7 @@ public class ShadowDecorator extends ShapeDecorator {
     }
 
     @Override
-    public void draw(GraphicsContext g)
-    {
+    public void draw(GraphicsContext g) {
         List<double[]> verts = inner.getVertices();
         int n = verts.size();
         double[] xs = new double[n];
@@ -31,10 +30,5 @@ public class ShadowDecorator extends ShapeDecorator {
         g.setFill(shadowColor);
         g.fillPolygon(xs, ys, n);
         inner.draw(g);
-    }
-
-    @Override
-    public List<double[]> getVertices() {
-        return inner.getVertices();
     }
 }
