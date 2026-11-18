@@ -6,6 +6,7 @@ module org.example.drawproject {
 
     opens org.example.drawproject to javafx.fxml;
     exports org.example.drawproject;
+    exports Model_Rebild to javafx.fxml;
     exports Model;
     opens Model to javafx.fxml;
 }

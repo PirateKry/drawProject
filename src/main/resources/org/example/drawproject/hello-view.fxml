@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.*?>
+<?import Model_Rebild.DrCanvas_R?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="org.example.drawproject.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.drawproject.HelloController">
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+    <top>
+        <VBox spacing="5" style="-fx-padding: 10;">
+
+            <!--панель инструментов-->
+            <HBox spacing="10">
+                <Button fx:id="circleButton"   text="Circle"/>
+                <Button fx:id="squareButton"   text="Square"/>
+                <Button fx:id="triangleButton" text="Triangle"/>
+                <Button fx:id="polygonButton"  text="Polygon"/>
+                <Button fx:id="clearButton"    text="Clear"/>
+                <ColorPicker fx:id="colorPicker"/>
+                <Label fx:id="toolLabel" text="Инструмент: —"/>
+            </HBox>
+
+            <!--параметры растровых фигур-->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Круг rad:"/>
+                <Spinner fx:id="circleRadSpinner" prefWidth="70" editable="true"/>
+
+                <Separator orientation="VERTICAL"/>
+
+                <Label text="Квадрат a:"/>
+                <Spinner fx:id="squareASpinner" prefWidth="70" editable="true"/>
+                <Label text="b:"/>
+                <Spinner fx:id="squareBSpinner" prefWidth="70" editable="true"/>
+
+                <Separator orientation="VERTICAL"/>
+
+                <!--параметры треугольника-->
+                <Label text="Треугольник a:"/>
+                <Spinner fx:id="triangleASpinner" prefWidth="70" editable="true"/>
+                <Label text="b:"/>
+                <Spinner fx:id="triangleBSpinner" prefWidth="70" editable="true"/>
+                <Label text="c:"/>
+                <Spinner fx:id="triangleCSpinner" prefWidth="70" editable="true"/>
+            </HBox>
+
+            <!--декораторы полигона-->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <CheckBox fx:id="fillCheck" text="Заливка"/>
+                <ColorPicker fx:id="fillColorPicker"/>
+
+                <CheckBox fx:id="borderCheck" text="Контур"/>
+                <ColorPicker fx:id="borderColorPicker"/>
+                <Spinner fx:id="borderWidthSpinner" prefWidth="70" editable="true"/>
+
+                <CheckBox fx:id="shadowCheck" text="Тень"/>
+                <ColorPicker fx:id="shadowColorPicker"/>
+                <Spinner fx:id="shadowDxSpinner" prefWidth="60" editable="true"/>
+                <Spinner fx:id="shadowDySpinner" prefWidth="60" editable="true"/>
+            </HBox>
+
+        </VBox>
+    </top>
+
+    <center>
+        <DrCanvas_R fx:id="drawingCanvas" width="800" height="500"/>
+    </center>
+</BorderPane>
