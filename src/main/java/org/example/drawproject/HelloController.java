@@ -5,6 +5,11 @@ import javafx.scene.control.*;
 import Model.*;
 import Model_Rebild.*;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class HelloController {
     @FXML private DrCanvas_R drawingCanvas;
@@ -16,6 +21,10 @@ public class HelloController {
     @FXML private Button triangleButton;
     @FXML private Button polygonButton;
     @FXML private Button clearButton;
+    //кнопки сохранения
+    @FXML private Button savePngButton;
+    @FXML private Button saveTextButton;
+    @FXML private Button loadTextButton;
 
     //элементы управления общий цвет
     @FXML private ColorPicker colorPicker;
@@ -105,6 +114,57 @@ public class HelloController {
 
         //инструмент по умолчанию
         selectTool(circleTool);
+
+        savePngButton.setOnAction(e -> onSavePng());
+        saveTextButton.setOnAction(e -> onSaveText());
+        loadTextButton.setOnAction(e -> onLoadText());
+    }
+
+    private void onSavePng() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Сохранить PNG");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG", "*.png"));
+        File file = fc.showSaveDialog(drawingCanvas.getScene().getWindow());
+        if (file == null) return;
+        try {
+            PngSaver.save(drawingCanvas, file);
+        } catch (IOException ex) {
+            showError("Не удалось сохранить PNG", ex);
+        }
+    }
+
+    private void onSaveText() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Сохранить вектор");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Vector text", "*.txt"));
+        File file = fc.showSaveDialog(drawingCanvas.getScene().getWindow());
+        if (file == null) return;
+        try {
+            VectorTextSaver.save(drawingCanvas.getVector(), file);   // ← только vector
+        } catch (IOException ex) {
+            showError("Не удалось сохранить вектор", ex);
+        }
+    }
+
+    private void onLoadText() {
+        FileChooser fc = new FileChooser();
+        fc.setTitle("Загрузить вектор");
+        fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("Vector text", "*.txt"));
+        File file = fc.showOpenDialog(drawingCanvas.getScene().getWindow());
+        if (file == null) return;
+        try {
+            List<Shape> loaded = VectorTextLoader.load(file);
+            drawingCanvas.getVector().clear();
+            drawingCanvas.getVector().addAll(loaded);   // ← только vector
+            drawingCanvas.repaint();
+        } catch (Exception ex) {
+            showError("Не удалось загрузить вектор", ex);
+        }
+    }
+
+    private void showError(String msg, Exception ex) {
+        Alert a = new Alert(Alert.AlertType.ERROR, msg + "\n" + ex.getMessage());
+        a.showAndWait();
     }
 
     //общий цвет для всех инструментов

@@ -31,9 +31,8 @@ public abstract class Pixel_R {
         this.color = color;
     }
 
-    protected void applyStrokeStyle(GraphicsContext g) {
-        g.setStroke(color);
-        g.setLineWidth(lineWidth);
+    protected void applyFillStyle(GraphicsContext g) {
+        g.setFill(color);
     }
 
     public abstract void draw(GraphicsContext g);

@@ -2,7 +2,6 @@ package Model;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import java.util.List;
 
 public class BorderDecorator extends ShapeDecorator {
 
@@ -15,20 +14,18 @@ public class BorderDecorator extends ShapeDecorator {
         this.width = width;
     }
 
+    public Color getStrokeColor(){
+        return strokeColor;
+    }
+    public double getWidth(){
+        return width;
+    }
+
     @Override
     public void draw(GraphicsContext g) {
         inner.draw(g);
-
-        List<double[]> verts = inner.getVertices();
-        int n = verts.size();
-        double[] xs = new double[n];
-        double[] ys = new double[n];
-        for (int i = 0; i < n; i++) {
-            xs[i] = verts.get(i)[0];
-            ys[i] = verts.get(i)[1];
-        }
         g.setStroke(strokeColor);
         g.setLineWidth(width);
-        g.strokePolygon(xs, ys, n);
+        g.strokePolygon(getXs(), getYs(), getVertexCount());
     }
 }

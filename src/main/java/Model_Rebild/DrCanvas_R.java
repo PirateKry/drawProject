@@ -56,4 +56,7 @@ public class DrCanvas_R extends javafx.scene.canvas.Canvas {
         vector.clear();
         repaint();
     }
+
+    public List<Shape> getVector() { return vector; }
+    public List<Pixel_R> getRaster() { return raster; }
 }

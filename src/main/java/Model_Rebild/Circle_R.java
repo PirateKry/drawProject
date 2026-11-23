@@ -16,7 +16,7 @@ public class Circle_R extends Pixel_R{
 
     @Override
     public void draw(GraphicsContext g){
-        applyStrokeStyle(g);
-        g.strokeOval(x - rad/2.0, y - rad/2.0, rad, rad);
+        g.setFill(color);
+        g.fillOval(x - rad/2.0, y - rad/2.0, rad, rad);
     }
 }

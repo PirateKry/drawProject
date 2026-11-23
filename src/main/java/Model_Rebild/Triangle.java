@@ -30,29 +30,21 @@ public class Triangle extends Pixel_R{
     }
 
     @Override
-    public void draw(GraphicsContext g){
+    public void draw(GraphicsContext g) {
         if (!isValid()) return;
+        applyFillStyle(g);
 
-        // Вершина A
-        double ax = x;
-        double ay = y;
-
-        // Вершина B — на расстоянии a по горизонтали
-        double bx = x + a;
-        double by = y;
-
-        // Вершина C — пересечение окружностей (A, b) и (B, c)
+        // Вершины (как в вашем draw)
+        double ax = x, ay = y;
+        double bx = x + a, by = y;
         double cx = (b * b - c * c + a * a) / (2 * a);
         double cy = Math.sqrt(b * b - cx * cx);
-
         double cX = ax + cx;
         double cY = ay - cy;
 
         double[] xs = { ax, bx, cX };
         double[] ys = { ay, by, cY };
-
-        applyStrokeStyle(g);
-        g.strokePolygon(xs, ys, 3);
+        g.fillPolygon(xs, ys, 3);   // ← заполненный треугольник (вместо strokePolygon)
     }
     //как можно реализовать фабрику с разным кол-во атрибутов у абектов и другой реализацией,
     // не switch, подсказка смс классы корекции

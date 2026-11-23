@@ -21,6 +21,9 @@
                 <Button fx:id="clearButton"    text="Clear"/>
                 <ColorPicker fx:id="colorPicker"/>
                 <Label fx:id="toolLabel" text="Инструмент: —"/>
+                <Button fx:id="savePngButton"  text="Сохранить PNG"/>
+                <Button fx:id="saveTextButton" text="Сохранить вектор"/>
+                <Button fx:id="loadTextButton" text="Загрузить вектор"/>
             </HBox>
 
             <!--параметры растровых фигур-->
