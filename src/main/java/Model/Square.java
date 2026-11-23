@@ -1,6 +1,8 @@
 package Model;
 
-import java.awt.*;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
 
 public class Square extends Pixel {
 
@@ -9,6 +11,12 @@ public class Square extends Pixel {
         super(x,y,size);
     }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
+
     @Override
-    public void draw(Graphics g) {}
+    public void draw(GraphicsContext g) {
+        applyStrokeStyle(g);
+        g.strokeRect(x - size/2.0, y - size/2.0, size, size);}
 }
